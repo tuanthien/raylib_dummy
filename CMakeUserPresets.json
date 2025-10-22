@@ -1,0 +1,73 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "windows_clangcl",
+      "displayName": "Windows ClangCL",
+      "binaryDir": "${sourceDir}/__out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_GENERATOR": "Ninja Multi-Config",
+        "CMAKE_VERBOSE_MAKEFILE": "ON",
+        "CMAKE_MAKE_PROGRAM": "E:/Tools/ninja/ninja.exe",
+        "CMAKE_C_COMPILER": "E:/Tools/LLVM/trunk/bin/clang-cl.exe",
+        "CMAKE_CXX_COMPILER": "E:/Tools/LLVM/trunk/bin/clang-cl.exe",
+        "CMAKE_RC_COMPILER": "E:/Windows Kits/10/bin/10.0.20348.0/x64/rc.exe",
+        "CMAKE_MT": "E:/Windows Kits/10/bin/10.0.20348.0/x64/mt.exe",
+        "CPM_SOURCE_CACHE": "E:/Cache/CPM"
+      },
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "toolset": {
+        "value": "host=x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "emscripten",
+      "displayName": "Emscripten",
+      "binaryDir": "${sourceDir}/__out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_GENERATOR": "Ninja Multi-Config",
+        "CMAKE_VERBOSE_MAKEFILE": "ON",
+        "CMAKE_MAKE_PROGRAM": "E:/Tools/ninja/ninja.exe",
+        "CMAKE_CROSSCOMPILING_EMULATOR": "E:/Tools/node-v24.10.0-win-x64/node.exe",
+        "CMAKE_TOOLCHAIN_FILE": "E:/SDK/emsdk-windows/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+        "EMSCRIPTEN_SYSTEM_PROCESSOR": "x86_64",
+        "CPM_SOURCE_CACHE": "E:/Cache/CPM",
+        "PLATFORM": "Web"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug ClangCL",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_clangcl",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release ClangCL",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_clangcl",
+      "configuration": "Release"
+    },
+    {
+      "name": "Debug Emscripten",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "emscripten",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release Emscripten",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "emscripten",
+      "configuration": "Release"
+    }
+  ]
+}
