@@ -40,7 +40,10 @@ target_sources(
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+  set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
+endif()
 
 # if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 #   add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -49,4 +52,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
 #     $<TARGET_FILE_DIR:${PROJECT_NAME}>
 #     COMMAND_EXPAND_LISTS
 #   )
+
 # endif()
