@@ -36,8 +36,14 @@ add_executable(${PROJECT_NAME})
 target_sources(
     ${PROJECT_NAME}
     PRIVATE
-    main.cpp
+    main.c
 )
+
+set_property(TARGET ${targetName} PROPERTY C_STANDARD 23)
+target_compile_features(${targetName} INTERFACE c_std_23)
+
+set_property(TARGET ${targetName} PROPERTY CXX_STANDARD 23)
+target_compile_features(${targetName} INTERFACE cxx_std_23)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 
@@ -54,3 +60,4 @@ endif()
 #   )
 
 # endif()
+
