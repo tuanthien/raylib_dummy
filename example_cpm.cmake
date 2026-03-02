@@ -9,7 +9,7 @@ CPMAddPackage(
 )
 
 target_link_libraries(
-  ${MODULE_TARGET} 
+  ${PROJECT_NAME} 
   PUBLIC
   fmt::fmt-header-only
 )
@@ -40,7 +40,7 @@ CPMAddPackage(
 )
 
 target_link_libraries(
-  ${MODULE_TARGET}
+  ${PROJECT_NAME}
   PUBLIC
   fmt::fmt-header-only # need fmt header-only because we enable SPDLOG_FMT_EXTERNAL_HO
   spdlog::spdlog
@@ -56,7 +56,7 @@ CPMAddPackage(
 )
 
 target_link_libraries(
-  ${MODULE_TARGET}
+  ${PROJECT_NAME}
   PUBLIC
   tinyobjloader
 )
@@ -92,7 +92,7 @@ else()
 endif()
 
 target_link_libraries(      
-  ${MODULE_TARGET}
+  ${PROJECT_NAME}
   PUBLIC
     Slang::slang
 )
