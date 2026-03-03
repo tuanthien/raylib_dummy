@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "cppvsdbg",
+      "request": "launch",
+      "name": "MSVC Debug",
+      "preLaunchTask": "Terminal: Clear",
+      "program": "${command:cmake.launchTargetPath}",
+      "args": [
+      ],
+      "cwd": "${workspaceFolder}",
+      "environment": [
+        {
+          "name": "PATH",
+          "value": "${env:PATH}:${command:cmake.getLaunchTargetDirectory}"
+        }
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}
