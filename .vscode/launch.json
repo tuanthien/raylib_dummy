@@ -5,7 +5,6 @@
       "type": "cppvsdbg",
       "request": "launch",
       "name": "MSVC Debug",
-      "preLaunchTask": "Terminal: Clear",
       "program": "${command:cmake.launchTargetPath}",
       "args": [
       ],
