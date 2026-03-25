@@ -1,25 +1,108 @@
 {
-  "version": 6,
+  "version": 8,
+  "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
   "configurePresets": [
+    {
+      "name": "windows-paths",
+      "hidden": true,
+      "cacheVariables": {
+        "CPM_SOURCE_CACHE": "E:/Cache/CPM"
+      }
+    },
     {
       "name": "windows_msvc",
       "displayName": "Windows MSVC",
-      "binaryDir": "${sourceDir}/__out/build/${presetName}",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "windows-config",
+        "windows-paths"
+      ],
       "cacheVariables": {
-        "CMAKE_GENERATOR": "Ninja Multi-Config",
-        "CMAKE_VERBOSE_MAKEFILE": "ON",
-        "CMAKE_MAKE_PROGRAM": "E:/Tools/ninja/ninja.exe",
         "CMAKE_C_COMPILER": "cl",
-        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl"
+      }
+    },
+    {
+      "name": "windows_clangcl",
+      "displayName": "Windows ClangCL",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "windows-config",
+        "windows-paths"
+      ],
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "E:/Tools/LLVM/21.1.8/bin/clang-cl.exe",
+        "CMAKE_CXX_COMPILER": "E:/Tools/LLVM/21.1.8/bin/clang-cl.exe",
+        "CMAKE_RC_COMPILER": "E:/Windows Kits/10/bin/10.0.22621.0/x64/rc.exe",
+        "CMAKE_MT": "E:/Windows Kits/10/bin/10.0.22621.0/x64/mt.exe"
+      }
+    },
+    {
+      "name": "linux-paths",
+      "hidden": true,
+      "cacheVariables": {
+        "CPM_SOURCE_CACHE": "/home/thanh/Common/Cache/CPM"
+      }
+    },
+    {
+      "name": "linux_gcc",
+      "displayName": "Linux GCC",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "linux-config",
+        "linux-paths"
+      ],
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "linux_clang",
+      "displayName": "Linux Clang",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "linux-config",
+        "linux-paths"
+      ],
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "/run/media/Common/Tools/LLVM/trunk-linux/bin/clang",
+        "CMAKE_CXX_COMPILER": "/run/media/Common/Tools/LLVM/trunk-linux/bin/clang++"
+      }
+    },
+    {
+      "name": "emscripten-windows-paths",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "E:/SDK/emsdk-windows/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+        "CMAKE_CROSSCOMPILING_EMULATOR": "E:/Tools/node-v24.10.0-win-x64/node.exe",
         "CPM_SOURCE_CACHE": "E:/Cache/CPM"
       },
-      "architecture": {
-        "value": "x64",
-        "strategy": "external"
-      },
-      "toolset": {
-        "value": "host=x64",
-        "strategy": "external"
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "emscripten-windows",
+      "displayName": "Emscripten",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "emscripten-config",
+        "emscripten-windows-paths"
+      ],
+      "cacheVariables": {
       }
     }
   ],
@@ -37,6 +120,49 @@
       "displayName": "",
       "configurePreset": "windows_msvc",
       "configuration": "Release"
+    },
+    {
+      "name": "Debug ClangCL",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_clangcl",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release ClangCL",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_clangcl",
+      "configuration": "Release"
+    },
+    {
+      "name": "Debug GCC",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "linux_gcc",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release GCC",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "linux_gcc",
+      "configuration": "Release"
+    },
+    {
+      "name": "Debug Emscripten",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "emscripten-windows",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release Emscripten",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "emscripten-windows",
+      "configuration": "Release"
     }
-  ]
+  ],
+  "testPresets": []
 }

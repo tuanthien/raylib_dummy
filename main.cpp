@@ -1,6 +1,6 @@
 #define RAYMATH_IMPLEMENTATION
-#include "raylib.h"
-#include "raymath.h"
+#include <raylib.h>
+#include <raymath.h>
 
 #include <stdio.h>
 
@@ -93,8 +93,8 @@ int main(void)
         {
             case STATE_MAIN_MENU:
             {
-				draw_text_centered("Bullet Hell", (Vector2) { SCREEN_WIDTH / 2.0f, 40.0f }, 80);
-				draw_text_centered("Press 'Enter' to start!", (Vector2) { SCREEN_WIDTH / 2.0f, 200.0f }, 20);
+				draw_text_centered("Bullet Hell", Vector2 { SCREEN_WIDTH / 2.0f, 40.0f }, 80);
+				draw_text_centered("Press 'Enter' to start!", Vector2 { SCREEN_WIDTH / 2.0f, 200.0f }, 20);
 
 				if (IsKeyPressed(KEY_ENTER))
 				{
@@ -110,7 +110,7 @@ int main(void)
 
 				char killCounter[100] = { 0 };
 				sprintf(killCounter, "Kills: %d", gameState.kills);
-				draw_text_centered(killCounter, (Vector2){ 40, 30 }, 20);
+				draw_text_centered(killCounter, Vector2{ 40, 30 }, 20);
 
 				// Shoot Proj
 				{
@@ -133,8 +133,8 @@ int main(void)
 						{
 							.pos = gameState.playerPos,
 							.dir = dir,
-							.speed = gameState.projSpeed,
 							.size = gameState.projSize,
+							.speed = gameState.projSpeed,
 						};
 						gameState.projectiles[gameState.projCount++] = proj;
 						gameState.shootTime -= gameState.shootDelay;
@@ -173,10 +173,10 @@ int main(void)
 						proj->pos.y += proj->dir.y * proj->speed * GetFrameTime();
 
 						const Rectangle screenRect = {
-							.height = SCREEN_HEIGHT,
-							.width = SCREEN_WIDTH,
 							.x = 0,
-							.y = 0
+							.y = 0,
+							.width = SCREEN_WIDTH,
+							.height = SCREEN_HEIGHT
 						};
 
 						if(!CheckCollisionPointRec(proj->pos, screenRect))
@@ -299,13 +299,13 @@ int main(void)
 
             case STATE_GAME_OVER:
             {
-				draw_text_centered("DEFEAT", (Vector2) { SCREEN_WIDTH / 2.0f, 40.0f }, 80);
+				draw_text_centered("DEFEAT", Vector2 { SCREEN_WIDTH / 2.0f, 40.0f }, 80);
 				
 				char killCounter[100] = { 0 };
 				sprintf(killCounter, "Kills: %d", gameState.kills);
-				draw_text_centered(killCounter, (Vector2){ 40, 100.0f }, 20);
+				draw_text_centered(killCounter, Vector2{ 40, 100.0f }, 20);
 
-				draw_text_centered("Press 'Enter' to restart!", (Vector2) { SCREEN_WIDTH / 2.0f, 200.0f }, 20);
+				draw_text_centered("Press 'Enter' to restart!", Vector2 { SCREEN_WIDTH / 2.0f, 200.0f }, 20);
 
 				if (IsKeyPressed(KEY_ENTER))
 				{

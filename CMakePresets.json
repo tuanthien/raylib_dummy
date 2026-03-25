@@ -1,0 +1,94 @@
+{
+  "version": 8,
+  "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
+  "configurePresets": [
+    {
+      "name": "ninja-multi",
+      "description": "use Ninja Multi-Configure generator",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_GENERATOR": "Ninja Multi-Config",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      }
+    },
+    {
+      "name": "common-paths",
+      "hidden": true,
+      "cacheVariables": {}
+    },
+    {
+      "name": "common-config",
+      "description": "common configurations",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/__out/build/${presetName}",
+      "cacheVariables": {},
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "toolset": {
+        "value": "host=x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "windows-config",
+      "hidden": true,
+      "cacheVariables": {},
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "linux-config",
+      "hidden": true,
+      "cacheVariables": {
+        "EAO_GRAPHICS_VULKAN_ENABLE": true,
+        "EAO_LINUX_WAYLAND_ENABLE": true
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "emscripten-config",
+      "hidden": true,
+      "cacheVariables": {
+        "EMSCRIPTEN_SYSTEM_PROCESSOR": "x86_64",
+        "PLATFORM": "Web"
+      }
+    },
+    {
+      "name": "windows_default",
+      "description": "Windows default configuration",
+      "displayName": "Windows Default",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "windows-config"
+      ],
+      "cacheVariables": {}
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_default",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_default",
+      "configuration": "Release"
+    }
+  ]
+}

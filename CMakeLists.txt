@@ -26,6 +26,8 @@ CPMAddPackage(
       GIT_SHALLOW ON
       GIT_TAG c1ab645ca298a2801097931d1079b10ff7eb9df8
       SYSTEM YES
+      OPTIONS
+      BUILD_SHARED_LIBS NO
       EXCLUDE_FROM_ALL YES)
 
 
@@ -35,7 +37,7 @@ add_executable(${PROJECT_NAME})
 target_sources(
     ${PROJECT_NAME}
     PRIVATE
-    main.c
+    main.cpp
 )
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 23)
@@ -50,14 +52,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
 endif()
 
-# if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-#   add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#     COMMAND ${CMAKE_COMMAND} -E copy_if_different  
-#     $<TARGET_RUNTIME_DLLS:${PROJECT_NAME}>
-#     $<TARGET_FILE_DIR:${PROJECT_NAME}>
-#     COMMAND_EXPAND_LISTS
-#   )
-
-# endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different  
+    $<TARGET_RUNTIME_DLLS:${PROJECT_NAME}>
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    COMMAND_EXPAND_LISTS
+  )
+endif()
 
 

@@ -6,8 +6,7 @@
       "request": "launch",
       "name": "MSVC Debug",
       "program": "${command:cmake.launchTargetPath}",
-      "args": [
-      ],
+      "args": [],
       "cwd": "${workspaceFolder}",
       "environment": [
         {
@@ -16,6 +15,33 @@
         }
       ],
       "console": "integratedTerminal"
-    }
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "LLDB Linux Debug",
+      "program": "${command:cmake.launchTargetPath}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+      },
+      "environment": [
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "runtimeExecutable": "F:/Downloads/chrome-win/chrome.exe",
+      "preLaunchTask": "CMake: build",
+      "url": "http://localhost:3000/${command:cmake.launchTargetFilename}",
+    },
   ]
 }
