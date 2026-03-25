@@ -1,7 +1,15 @@
 {
   "version": 8,
   "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
-  "configurePresets": [
+  "configurePresets": [    {
+      "name": "ninja-multi",
+      "description": "use Ninja Multi-Configure generator",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_GENERATOR": "Ninja Multi-Config",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      }
+    },
     {
       "name": "windows-paths",
       "hidden": true,

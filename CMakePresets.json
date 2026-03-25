@@ -3,15 +3,6 @@
   "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
   "configurePresets": [
     {
-      "name": "ninja-multi",
-      "description": "use Ninja Multi-Configure generator",
-      "hidden": true,
-      "cacheVariables": {
-        "CMAKE_GENERATOR": "Ninja Multi-Config",
-        "CMAKE_VERBOSE_MAKEFILE": "ON"
-      }
-    },
-    {
       "name": "common-paths",
       "hidden": true,
       "cacheVariables": {}
@@ -65,7 +56,6 @@
       "description": "Windows default configuration",
       "displayName": "Windows Default",
       "inherits": [
-        "ninja-multi",
         "common-config",
         "common-paths",
         "windows-config"
@@ -77,7 +67,6 @@
       "description": "Enscripten default configuration",
       "displayName": "Enscripten Default",
       "inherits": [
-        "ninja-multi",
         "common-config",
         "common-paths",
         "emscripten-config"
