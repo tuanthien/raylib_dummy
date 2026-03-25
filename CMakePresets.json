@@ -45,8 +45,6 @@
       "name": "linux-config",
       "hidden": true,
       "cacheVariables": {
-        "EAO_GRAPHICS_VULKAN_ENABLE": true,
-        "EAO_LINUX_WAYLAND_ENABLE": true
       },
       "condition": {
         "type": "equals",
