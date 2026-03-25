@@ -73,21 +73,47 @@
         "windows-config"
       ],
       "cacheVariables": {}
+    },
+    {
+      "name": "enscripten_default",
+      "description": "Enscripten default configuration",
+      "displayName": "Enscripten Default",
+      "inherits": [
+        "ninja-multi",
+        "common-config",
+        "common-paths",
+        "emscripten-config"
+      ],
+      "cacheVariables": {}
     }
   ],
   "buildPresets": [
     {
-      "name": "Debug",
+      "name": "Windows Debug",
       "description": "",
       "displayName": "",
       "configurePreset": "windows_default",
       "configuration": "Debug"
     },
     {
-      "name": "Release",
+      "name": "Windows Release",
       "description": "",
       "displayName": "",
       "configurePreset": "windows_default",
+      "configuration": "Release"
+    },
+    {
+      "name": "Enscripten Debug",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "enscripten_default",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Enscripten Release",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "enscripten_default",
       "configuration": "Release"
     }
   ]
