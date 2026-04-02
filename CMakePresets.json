@@ -3,9 +3,11 @@
   "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
   "configurePresets": [
     {
-      "name": "common-paths",
+      "name": "cpm-cache-default",
       "hidden": true,
-      "cacheVariables": {}
+      "cacheVariables": {
+        "CPM_SOURCE_CACHE": "~/.cache/CPM"
+      }
     },
     {
       "name": "common-config",
@@ -35,8 +37,7 @@
     {
       "name": "linux-config",
       "hidden": true,
-      "cacheVariables": {
-      },
+      "cacheVariables": {},
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -46,10 +47,7 @@
     {
       "name": "emscripten-config",
       "hidden": true,
-      "cacheVariables": {
-        "EMSCRIPTEN_SYSTEM_PROCESSOR": "x86_64",
-        "PLATFORM": "Web"
-      }
+      "cacheVariables": {}
     },
     {
       "name": "windows_default",
@@ -57,7 +55,7 @@
       "displayName": "Windows Default",
       "inherits": [
         "common-config",
-        "common-paths",
+        "cpm-cache-default",
         "windows-config"
       ],
       "cacheVariables": {}
@@ -68,7 +66,7 @@
       "displayName": "Enscripten Default",
       "inherits": [
         "common-config",
-        "common-paths",
+        "cpm-cache-default",
         "emscripten-config"
       ],
       "cacheVariables": {}

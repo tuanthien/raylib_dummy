@@ -5,11 +5,14 @@ project("raylib_dummy" VERSION 0.0.1 DESCRIPTION "raylib_dummy")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+  string(JOIN " " CMAKE_C_FLAGS 
+    
+  ) 
   string(JOIN " " CMAKE_CXX_FLAGS 
-    "-g"
-  )
+    
+  ) 
   string(JOIN " " CMAKE_EXE_LINKER_FLAGS
-    "-sUSE_GLFW=3"
+    # "-sUSE_GLFW=3"
     "-sGL_ENABLE_GET_PROC_ADDRESS=1"
     "-gsource-map"
     "-sEXIT_RUNTIME"
@@ -20,8 +23,9 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   )
 endif()
 
-# # Download Raylib
+# Download Raylib
 include(cmake/CMakePackageManager.cmake)
+# set(PLATFORM Web)
 # CPMAddPackage(
 #       GITHUB_REPOSITORY raysan5/raylib
 #       GIT_SHALLOW ON
@@ -67,7 +71,7 @@ target_compile_features(${PROJECT_NAME} INTERFACE c_std_23)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 23)
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_23)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 SDL3_image::SDL3_image )
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 SDL3_image::SDL3_image ) # raylib
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
