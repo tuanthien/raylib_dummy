@@ -9,7 +9,7 @@
     },
     {
       "name": "common-config",
-      "description": "common configurations",
+      "description": "common configuration",
       "hidden": true,
       "binaryDir": "${sourceDir}/__out/build/${presetName}",
       "cacheVariables": {},

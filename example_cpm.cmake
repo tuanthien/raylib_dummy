@@ -96,3 +96,16 @@ target_link_libraries(
   PUBLIC
     Slang::slang
 )
+
+# SDL3
+CPMAddPackage(
+  GITHUB_REPOSITORY libsdl-org/SDL
+  GIT_SHALLOW ON
+  GIT_TAG 683181b47cfabd293e3ea409f838915b8297a4fd
+  SYSTEM YES
+  OPTIONS
+  SDL_SHARED NO
+  SDL_STATIC YES
+  EXCLUDE_FROM_ALL YES)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
